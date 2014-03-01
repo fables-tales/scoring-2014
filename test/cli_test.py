@@ -49,7 +49,7 @@ def check_by_input_file(input_name):
     expected_output = yaml.load(open(output_file).read())
     output = assert_run(input_file)
 
-    assert output == expected_output
+    assert output == expected_output, "Incorrect scores for '{0}'.".format(input_name)
 
 def test_input_file():
     files = os.listdir("test/data")
