@@ -7,7 +7,3 @@ sys.path.insert(0, path)
 print sys.path
 
 from scorer import Scorer
-
-
-def test_enumerates_tlas():
-   
