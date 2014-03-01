@@ -24,7 +24,7 @@ def assert_run(relative_path):
 
     assert retcode == 0, "Bad return code scoring '{0}'.".format(relative_path)
 
-    result = process.stdout.reads()
+    result = process.stdout.read()
     result_dict = yaml.load(result)
     return result_dict
 
@@ -76,7 +76,7 @@ def test_stdin():
 
     assert retcode == 0, "Bad return code scoring from stdin."
 
-    result = process.stdout.reads()
+    result = process.stdout.read()
     result_dict = yaml.load(result)
 
     assert result_dict == zeros_output, "Bad output when reading from stdin"
