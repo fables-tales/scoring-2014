@@ -31,9 +31,5 @@ if __name__ == "__main__":
         else:
             reader = open(sys.argv[1], 'r')
 
-    main(reader)
-    print yaml.dump(
-            {
-                "version":"1.0.0",
-            }
-    )
+    output = main(reader)
+    print yaml.dump(output)
