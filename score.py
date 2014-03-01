@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-import yaml
-import sys
 import os
+import sys
+import yaml
 
 path = os.path.dirname(os.path.realpath(__file__)) + "/lib/"
 sys.path.insert(0, path)

@@ -29,5 +29,3 @@ def test_run_the_template():
         "TLA3": tla_result_fixture(2),
         "TLA4": tla_result_fixture(3),
     }
-
-

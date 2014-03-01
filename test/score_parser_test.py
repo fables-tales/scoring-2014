@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 from mock import Mock
 path = os.path.dirname(os.path.realpath(__file__)) + "/../lib/"
