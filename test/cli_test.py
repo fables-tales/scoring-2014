@@ -66,7 +66,7 @@ def test_stdin():
     """
 
     zeros_input = open('test/data/zero.yaml', 'r')
-    zeros_output = open('test/data/zero.out.yaml').read()
+    zeros_output = yaml.load(open('test/data/zero.out.yaml').read())
 
     process = subprocess.Popen(["./score.py"], stdin=zeros_input, \
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
