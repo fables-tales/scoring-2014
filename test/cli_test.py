@@ -80,3 +80,9 @@ def test_stdin():
     result_dict = yaml.load(result)
 
     assert result_dict == zeros_output, "Bad output when reading from stdin"
+
+def test_missing_file():
+    nope = 'bacon'
+    assert not os.path.exists(nope)
+    retcode, process = run(nope)
+    assert retcode == 1, "Should error when nonexistent input file '{}' is provided.".format(nope)
