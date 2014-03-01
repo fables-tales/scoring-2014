@@ -58,3 +58,25 @@ def test_input_file():
 
     for input_name in inputs:
         yield check_by_input_file, input_name
+
+def test_stdin():
+    """
+    A proton compliant program MUST consume YAML from stdin
+    if it is not given a filename.
+    """
+
+    zeros_input = open('test/data/zero.yaml', 'r')
+    zeros_output = open('test/data/zero.out.yaml').read()
+
+    process = subprocess.Popen(["./score.py"], stdin=zeros_input, \
+                               stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    retcode = process.wait()
+    if retcode != 0:
+        print process.stderr.read()
+
+    assert retcode == 0, "Bad return code scoring from stdin."
+
+    result = process.stdout.reads()
+    result_dict = yaml.load(result)
+
+    assert result_dict == zeros_output, "Bad output when reading from stdin"

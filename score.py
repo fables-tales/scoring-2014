@@ -9,8 +9,8 @@ sys.path.insert(0, path)
 from score_parser import ScoreParser
 from scorer import Scorer
 
-def main(file_name):
-    parsed_match = ScoreParser(yaml.load).parse(open(file_name).read())
+def main(file_reader):
+    parsed_match = ScoreParser(yaml.load).parse(file_reader.read())
     scorer = Scorer()
     scores = scorer.produce_scores(parsed_match)
     return {
@@ -20,9 +20,18 @@ def main(file_name):
     }
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        exit("Usage: {} SCORES_YAML".format(sys.argv[0]))
-    main(sys.argv[1])
+
+    # Proton says read from stdin if no file.
+    reader = sys.stdin
+
+    if len(sys.argv) > 1:
+        # But let's be helpful if we can
+        if sys.argv[1] in ['-h', '--help']:
+            exit("Usage: {} SCORES_YAML".format(sys.argv[0]))
+        else:
+            reader = open(sys.argv[1], 'r')
+
+    main(reader)
     print yaml.dump(
             {
                 "version":"1.0.0",
