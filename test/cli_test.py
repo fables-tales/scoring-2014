@@ -43,14 +43,14 @@ def test_run_the_template():
     }
 
 def check_by_input_file(input_name):
-    input_file, expected_output = helpers.get_data("test/data", input_name)
+    input_file, expected_output = helpers.get_data("test/data/cli", input_name)
 
     output = assert_run(input_file)
 
     assert output == expected_output, "Incorrect scores for '{0}'.".format(input_name)
 
 def test_input_file():
-    inputs = helpers.get_input_files("test/data")
+    inputs = helpers.get_input_files("test/data/cli")
 
     for input_name in inputs:
         yield check_by_input_file, input_name
@@ -61,8 +61,8 @@ def test_stdin():
     if it is not given a filename.
     """
 
-    zeros_input = open('test/data/zero.yaml', 'r')
-    zeros_output = yaml.load(open('test/data/zero.out.yaml').read())
+    zeros_input = open('test/data/cli/zero.yaml', 'r')
+    zeros_output = yaml.load(open('test/data/cli/zero.out.yaml').read())
 
     process = subprocess.Popen(["./score.py"], stdin=zeros_input, \
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
