@@ -1,0 +1,26 @@
+input:
+  TLA1:
+    robot_moved: false
+    zones_owned: []
+    slots_owned: []
+    upright_tokens: 0
+  TLA2:
+    robot_moved: false
+    zones_owned: []
+    slots_owned: []
+    upright_tokens: 0
+  TLA3:
+    robot_moved: false
+    zones_owned: []
+    slots_owned: []
+    upright_tokens: 0
+  TLA4:
+    robot_moved: false
+    zones_owned: []
+    slots_owned: []
+    upright_tokens: 0
+scores:
+  TLA1: 0
+  TLA2: 0
+  TLA3: 0
+  TLA4: 0

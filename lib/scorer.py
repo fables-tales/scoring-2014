@@ -1,6 +1,10 @@
+
 class Scorer:
-    def produce_scores(self, teams_data):
+    def __init__(self, scoresheet):
+        self._scoresheet = scoresheet
+
+    def calculate_scores(self):
         scores = {}
-        for tla in teams_data.keys():
+        for tla in self._scoresheet.keys():
             scores[tla] = 0
         return scores

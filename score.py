@@ -14,6 +14,6 @@ sys.path.insert(0, path)
 import libproton
 
 def score(teams_data):
-    return Scorer().produce_scores(teams_data)
+    return Scorer(teams_data).calculate_scores()
 
 libproton.main(score)
