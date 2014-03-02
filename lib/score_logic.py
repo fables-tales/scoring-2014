@@ -1,10 +1,4 @@
 
-def tidy_zones(token_map):
-    return token_map
-
-def tidy_slots(slot_map):
-    return slot_map
-
 def score_team(score_data):
 
     score = score_data['upright_tokens']
@@ -27,3 +21,9 @@ def score_team(score_data):
             score += 1
 
     return score
+
+def tidy_slots(slot_map):
+    return slot_map
+
+def tidy_zones(token_map):
+    return token_map
