@@ -1,12 +1,6 @@
 class Scorer:
-    def produce_scores(self, parsed_scoresheet):
-        teams = parsed_scoresheet['teams']
+    def produce_scores(self, teams_data):
         scores = {}
-        for z, tla in enumerate(sorted(teams.keys())):
-            scores[tla] = {
-                "score": 0,
-                "present": True,
-                "disqualified": False,
-                "zone": z,
-            }
+        for tla in teams_data.keys():
+            scores[tla] = 0
         return scores
