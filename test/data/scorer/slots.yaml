@@ -1,0 +1,99 @@
+input:
+  TLA1:
+    zone: 0
+    robot_moved: true
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 1
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+      6: 1
+      7: 0
+    upright_tokens: 0
+  TLA2:
+    zone: 1
+    robot_moved: true
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 0
+      2: 0
+      3: 1
+      4: 1
+      5: 0
+      6: 0
+      7: 0
+    upright_tokens: 0
+  TLA3:
+    zone: 2
+    robot_moved: true
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 1
+      2: 1
+      3: 0
+      4: 0
+      5: 0
+      6: 0
+      7: 0
+    upright_tokens: 0
+  TLA4:
+    zone: 3
+    robot_moved: true
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 1
+      6: 0
+      7: 1
+    upright_tokens: 0
+isolated_scores:
+  TLA1:
+    robot_moved: true
+    zones_owned: []
+    slots_owned: [0, 6] # opposite sides of the wall
+    upright_tokens: 0
+  TLA2:
+    robot_moved: true
+    zones_owned: []
+    slots_owned: [3, 4] # opposite sides of the wall, despite being sequential
+    upright_tokens: 0
+  TLA3:
+    robot_moved: true
+    zones_owned: []
+    slots_owned: [1, 2] # adjacent
+    upright_tokens: 0
+  TLA4:
+    robot_moved: true
+    zones_owned: []
+    slots_owned: [5, 7] # not adjacent, but same side
+    upright_tokens: 0
+scores:
+  TLA1: 3
+  TLA2: 3
+  TLA3: 5
+  TLA4: 3
