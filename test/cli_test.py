@@ -3,6 +3,8 @@ import os
 import subprocess
 import yaml
 
+import helpers
+
 def tla_result_fixture(zone_number):
     return {
         "score": 0,
@@ -41,20 +43,14 @@ def test_run_the_template():
     }
 
 def check_by_input_file(input_name):
-    input_file = os.path.join("test/data", input_name)
-    output_file = os.path.join("test/data", input_name[:-5] + '.out.yaml')
+    input_file, expected_output = helpers.get_data("test/data", input_name)
 
-    assert os.path.exists(output_file), "Missing output expectation '{1}' for input '{0}'.".format(input_name, output_file)
-
-    expected_output = yaml.load(open(output_file).read())
     output = assert_run(input_file)
 
     assert output == expected_output, "Incorrect scores for '{0}'.".format(input_name)
 
 def test_input_file():
-    files = os.listdir("test/data")
-    outputs = [f for f in files if f.endswith('.out.yaml')]
-    inputs = [f for f in files if f.endswith('.yaml') and not f in outputs]
+    inputs = helpers.get_input_files("test/data")
 
     for input_name in inputs:
         yield check_by_input_file, input_name
