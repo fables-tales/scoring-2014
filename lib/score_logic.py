@@ -68,5 +68,5 @@ def tidy_zones(zone_map):
 
     return tidied
 
-def validate_team(team_data):
+def validate_team(tla, team_data):
     return True

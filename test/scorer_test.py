@@ -92,10 +92,14 @@ def test_invalid_data():
     something = object()
     input_ = { "TLA1": something, "TLA2": something }
 
+    error  = Exception('bacon')
+    def checker(tla, data):
+        assert data is something, "Wrong data passed to validator"
+        raise error
+
     with mock.patch('scorer.validate_team', create=True) as mock_validate:
 
-        error = Exception('bacon')
-        mock_validate.side_effect = error
+        mock_validate.side_effect = checker
 
         threw = False
         try:
@@ -104,8 +108,5 @@ def test_invalid_data():
         except Exception as e:
             threw = True
             assert e is error
-
-        # Same value deliberately in both teams as ordering isn't fixed
-        mock_validate.assert_called_once_with(something)
 
         assert threw, "Should have experienced an error from the validator"
