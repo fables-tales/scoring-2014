@@ -1,5 +1,7 @@
 # SRobo 2014 Scorer
 
+[![Build Status](https://travis-ci.org/PeterJCLaw/scoring-2014.png)](https://travis-ci.org/PeterJCLaw/scoring-2014)
+
 This is a script to calculate game scores for the [Student Robotics](https://www.studentrobotics.org)
 2014 game entitled 'Slots'.
 It complies with the [Proton](https://github.com/samphippen/proton)
