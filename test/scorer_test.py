@@ -27,6 +27,7 @@ def test_input_file():
 def test_isolated_scores():
     mock_tidy_zones = mock.Mock()
     mock_tidy_slots = mock.Mock()
+    mock_validate = mock.Mock(return_value = True)
 
     zones_1 = 'zones_1'
     zones_2 = 'zones_2'
@@ -78,7 +79,8 @@ def test_isolated_scores():
     }
 
     with mock.patch('scorer.tidy_zones', mock_tidy_zones), \
-            mock.patch('scorer.tidy_slots', mock_tidy_slots):
+            mock.patch('scorer.tidy_slots', mock_tidy_slots), \
+            mock.patch('scorer.validate_team', mock_validate):
 
         scorer = Scorer(input_)
         actual = scorer.isolated_scores
