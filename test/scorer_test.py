@@ -87,3 +87,25 @@ def test_isolated_scores():
         mock_tidy_slots.assert_called_once_with(expected_slots)
 
         assert actual == expected, "Wrong isolated scores."
+
+def test_invalid_data():
+    something = object()
+    input_ = { "TLA1": something, "TLA2": something }
+
+    with mock.patch('scorer.validate_team', create=True) as mock_validate:
+
+        error = Exception('bacon')
+        mock_validate.side_effect = error
+
+        threw = False
+        try:
+            scorer = Scorer(input_)
+            actual = scorer.calculate_scores()
+        except Exception as e:
+            threw = True
+            assert e is error
+
+        # Same value deliberately in both teams as ordering isn't fixed
+        mock_validate.assert_called_once_with(something)
+
+        assert threw, "Should have experienced an error from the validator"

@@ -1,5 +1,5 @@
 
-from score_logic import score_team, tidy_slots, tidy_zones
+from score_logic import score_team, tidy_slots, tidy_zones, validate_team
 
 class Scorer:
     def __init__(self, scoresheet):
@@ -27,6 +27,7 @@ class Scorer:
         zone_tokens = {}
         slot_bottoms = {}
         for tla, team_data in self._scoresheet.items():
+            validate_team(team_data)
             zone_tokens[tla] = team_data['zone_tokens']
             slot_bottoms[tla] = team_data['slot_bottoms']
 

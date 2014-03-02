@@ -67,3 +67,6 @@ def tidy_zones(zone_map):
         tidied[owner].add(slot)
 
     return tidied
+
+def validate_team(team_data):
+    return True
