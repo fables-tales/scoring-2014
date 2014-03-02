@@ -2,6 +2,14 @@
 import os
 import yaml
 
+def tla_result_fixture(zone_number, score = 0):
+    return {
+        "score": score,
+        "present": True,
+        "disqualified": False,
+        "zone": zone_number,
+    }
+
 def get_data(data_root, input_name):
     input_file = os.path.join(data_root, input_name)
     output_file = os.path.join(data_root, input_name[:-5] + '.out.yaml')

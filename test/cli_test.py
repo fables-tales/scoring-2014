@@ -5,14 +5,6 @@ import yaml
 
 import helpers
 
-def tla_result_fixture(zone_number):
-    return {
-        "score": 0,
-        "present": True,
-        "disqualified": False,
-        "zone": zone_number,
-    }
-
 def run(relative_path):
     process = subprocess.Popen(["./score.py",  relative_path], \
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -36,10 +28,10 @@ def test_run_the_template():
     assert result_dict["version"] == "1.0.0"
     assert result_dict["match_number"] == 0
     assert result_dict["scores"] == {
-        "TLA1": tla_result_fixture(0),
-        "TLA2": tla_result_fixture(1),
-        "TLA3": tla_result_fixture(2),
-        "TLA4": tla_result_fixture(3),
+        "TLA1": helpers.tla_result_fixture(0),
+        "TLA2": helpers.tla_result_fixture(1),
+        "TLA3": helpers.tla_result_fixture(2),
+        "TLA4": helpers.tla_result_fixture(3),
     }
 
 def check_by_input_file(input_name):
