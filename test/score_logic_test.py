@@ -4,7 +4,7 @@ import yaml
 
 import helpers
 
-from score_logic import score_team
+from score_logic import score_team, tidy_slots
 
 def test_score_team_zero():
     score_data = {
@@ -141,3 +141,48 @@ def test_score_team_mixed_1():
     }
     score = score_team(score_data)
     assert score == 12
+
+
+def test_tidy_slots_empty():
+    input_ = {
+        'TLA1' : { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 },
+        'TLA2' : { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 },
+    }
+
+    expected = {
+        'TLA1' : set(),
+        'TLA2' : set(),
+    }
+
+    actual = tidy_slots(input_)
+
+    assert actual == expected
+
+def test_tidy_slots_simple():
+    input_ = {
+        'TLA1' : { 0: 1, 1: 1, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 },
+        'TLA2' : { 0: 0, 1: 0, 2: 1, 3: 1, 4: 0, 5: 0, 6: 0, 7: 0 },
+    }
+
+    expected = {
+        'TLA1' : set([0, 1]),
+        'TLA2' : set([2, 3]),
+    }
+
+    actual = tidy_slots(input_)
+
+    assert actual == expected
+
+def test_tidy_slots_clash():
+    input_ = {
+        'TLA1' : { 0: 1, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 },
+        'TLA2' : { 0: 1, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 },
+    }
+
+    threw = False
+    try:
+        tidy_slots(input_)
+    except Exception as e:
+        threw = True
+
+    assert threw, "Should have complained about invalid input."

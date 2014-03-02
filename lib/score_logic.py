@@ -23,7 +23,25 @@ def score_team(score_data):
     return score
 
 def tidy_slots(slot_map):
-    return slot_map
+    owners = {}
+    tidied = {}
+
+    for tla, slots in slot_map.items():
+        for s, val in slots.items():
+            if val:
+                if s in owners:
+                    msg = "Slot {0} claims to be owned by at least '{1}' and '{2}'." \
+                            .format(s, tla, owners[s])
+                    raise Exception(msg)
+
+                owners[s] = tla
+
+        tidied[tla] = set()
+
+    for slot, owner in owners.items():
+        tidied[owner].add(slot)
+
+    return tidied
 
 def tidy_zones(token_map):
     return token_map
