@@ -1,14 +1,9 @@
 
 import mock
 import os
-import sys
 import yaml
 
 import helpers
-
-path = os.path.dirname(os.path.realpath(__file__)) + "/../lib/"
-sys.path.insert(0, path)
-print sys.path
 
 from scorer import Scorer
 
