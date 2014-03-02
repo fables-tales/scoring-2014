@@ -12,3 +12,5 @@ Example:
 ~~~~
 ./score.py matches/001.yaml
 ~~~~
+
+Run tests with `nosetests` from the root.
