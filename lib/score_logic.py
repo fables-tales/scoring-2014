@@ -69,4 +69,33 @@ def tidy_zones(zone_map):
     return tidied
 
 def validate_team(tla, team_data):
-    return True
+
+    keys = ['robot_moved', 'zone_tokens', 'slot_bottoms', 'upright_tokens']
+    NUM_ZONES = 4
+    NUM_SLOTS = 8
+    MAX_TOKENS = 8
+
+    def check_missing(all_, actual, type_):
+        missing = set(all_) - set(actual)
+        if len(missing) > 0:
+            missing_str = ', '.join(str(m) for m in missing)
+            raise Exception("Data for '{0}' is missing {1}: {2}." \
+                                .format(tla, type_, missing_str))
+
+    check_missing(keys, team_data.keys(), 'keys')
+
+    zone_tokens = team_data['zone_tokens']
+    check_missing(range(NUM_ZONES), zone_tokens.keys(), 'information for zones')
+
+    slot_bottoms = team_data['slot_bottoms']
+    check_missing(range(NUM_SLOTS), slot_bottoms.keys(), 'information for slots')
+
+    token_count = sum(1 if v else 0 for v in slot_bottoms.values())
+
+    for z, v in zone_tokens.items():
+        if v < 0:
+            raise Exception("Data for '{0}' cannot a negative number ({1}) of tokens in zone {2}!".format(tla, v, z))
+        token_count += v
+
+    if token_count > MAX_TOKENS:
+        raise Exception("Data for '{0}' has too many tokens ({1}, max is {2})!".format(tla, token_count, MAX_TOKENS))
