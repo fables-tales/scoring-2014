@@ -1,4 +1,6 @@
 
+from collections import defaultdict
+
 def score_team(score_data):
 
     score = score_data['upright_tokens']
@@ -43,5 +45,25 @@ def tidy_slots(slot_map):
 
     return tidied
 
-def tidy_zones(token_map):
-    return token_map
+def tidy_zones(zone_map):
+    token_map = defaultdict(lambda: defaultdict(set))
+    tidied = {}
+
+    for tla, zones in zone_map.items():
+        for z, val in zones.items():
+            if val > 0:
+                token_map[z][val].add(tla)
+
+        tidied[tla] = set()
+
+    owners = {}
+    for z, claims in token_map.items():
+        max_tokens = max(claims.keys())
+        top_teams = claims[max_tokens]
+        if len(top_teams) == 1:
+            owners[z] = top_teams.pop()
+
+    for slot, owner in owners.items():
+        tidied[owner].add(slot)
+
+    return tidied

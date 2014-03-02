@@ -4,7 +4,7 @@ import yaml
 
 import helpers
 
-from score_logic import score_team, tidy_slots
+from score_logic import score_team, tidy_slots, tidy_zones
 
 def test_score_team_zero():
     score_data = {
@@ -186,3 +186,75 @@ def test_tidy_slots_clash():
         threw = True
 
     assert threw, "Should have complained about invalid input."
+
+
+def test_tidy_zones_empty():
+    input_ = {
+        'TLA1' : { 0: 0, 1: 0, 2: 0, 3: 0 },
+        'TLA2' : { 0: 0, 1: 0, 2: 0, 3: 0 },
+    }
+
+    expected = {
+        'TLA1' : set(),
+        'TLA2' : set(),
+    }
+
+    actual = tidy_zones(input_)
+
+    assert actual == expected
+
+def test_tidy_zones_simple():
+    input_ = {
+        'TLA1' : { 0: 1, 1: 1, 2: 0, 3: 0 },
+        'TLA2' : { 0: 0, 1: 0, 2: 1, 3: 1 },
+    }
+
+    expected = {
+        'TLA1' : set([0, 1]),
+        'TLA2' : set([2, 3]),
+    }
+
+    actual = tidy_zones(input_)
+    assert actual == expected
+
+def test_tidy_zones_overlap():
+    input_ = {
+        'TLA1' : { 0: 1, 1: 0, 2: 0, 3: 0 },
+        'TLA2' : { 0: 2, 1: 0, 2: 0, 3: 0 },
+    }
+
+    expected = {
+        'TLA1' : set(),
+        'TLA2' : set([0]),
+    }
+
+    actual = tidy_zones(input_)
+    assert actual == expected
+
+def test_tidy_zones_tie():
+    input_ = {
+        'TLA1' : { 0: 1, 1: 0, 2: 0, 3: 0 },
+        'TLA2' : { 0: 1, 1: 0, 2: 0, 3: 0 },
+    }
+
+    expected = {
+        'TLA1' : set(),
+        'TLA2' : set(),
+    }
+
+    actual = tidy_zones(input_)
+    assert actual == expected
+
+def test_tidy_zones_mixed():
+    input_ = {
+        'TLA1' : { 0: 1, 1: 4, 2: 0, 3: 0 },
+        'TLA2' : { 0: 1, 1: 1, 2: 2, 3: 0 },
+    }
+
+    expected = {
+        'TLA1' : set([1]),
+        'TLA2' : set([2]),
+    }
+
+    actual = tidy_zones(input_)
+    assert actual == expected
