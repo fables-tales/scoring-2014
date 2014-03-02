@@ -1,12 +1,5 @@
 
-def tidy_zones(token_map):
-    return token_map
-
-def tidy_slots(slot_map):
-    return slot_map
-
-def score_team(score_data):
-    return 0
+from score_logic import score_team, tidy_slots, tidy_zones
 
 class Scorer:
     def __init__(self, scoresheet):
