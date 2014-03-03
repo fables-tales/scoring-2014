@@ -15,4 +15,26 @@ Example:
 ./score.py matches/001.yaml
 ~~~~
 
+The input yaml file should look something like this
+ (but you should _always_ use the template as detailed above!):
+~~~~ .yaml
+match_number: 0
+teams:
+  TLA1:
+    zone: 0 # integer
+    robot_moved: false # boolean
+    zone_tokens:
+      0: 0 # integer
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0 # bool-ish value, suggested as 1 or 0
+      # 1...6
+      7: 0
+    upright_tokens: 0 # integer
+  TLA2:
+    # etc.
+~~~~
+
 Run tests with `nosetests` from the root.
