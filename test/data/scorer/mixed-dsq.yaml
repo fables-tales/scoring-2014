@@ -1,0 +1,107 @@
+input:
+  TLA1:
+    zone: 0
+    disqualified: false
+    present: false
+    robot_moved: false
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+      6: 0
+      7: 0
+    upright_tokens: 0
+  TLA2:
+    zone: 1
+    disqualified: true
+    present: true
+    robot_moved: true
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 1
+      6: 1
+      7: 0
+    upright_tokens: 2
+  TLA3:
+    zone: 2
+    disqualified: false
+    present: true
+    robot_moved: true
+    zone_tokens:
+      0: 1
+      1: 1
+      2: 0
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 0
+      2: 0
+      3: 0
+      4: 0
+      5: 0
+      6: 0
+      7: 0
+    upright_tokens: 0
+  TLA4:
+    zone: 3
+    disqualified: true
+    present: false
+    robot_moved: true
+    zone_tokens:
+      0: 0
+      1: 0
+      2: 1
+      3: 0
+    slot_bottoms:
+      0: 0
+      1: 1
+      2: 1
+      3: 1
+      4: 0
+      5: 0
+      6: 0
+      7: 0
+    upright_tokens: 0
+isolated_scores:
+  TLA1:
+    robot_moved: false
+    zones_owned: []
+    slots_owned: []
+    upright_tokens: 0
+  TLA2:
+    robot_moved: true
+    zones_owned: []
+    slots_owned: [5, 6]
+    upright_tokens: 2
+  TLA3:
+    robot_moved: true
+    zones_owned: [0, 1]
+    slots_owned: []
+    upright_tokens: 0
+  TLA4:
+    robot_moved: true
+    zones_owned: [2]
+    slots_owned: [1, 2, 3]
+    upright_tokens: 0
+scores:
+  TLA1: 0
+  TLA2: 7
+  TLA3: 3
+  TLA4: 8
