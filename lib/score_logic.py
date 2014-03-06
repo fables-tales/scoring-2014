@@ -84,6 +84,14 @@ def validate_team(tla, team_data):
 
     check_missing(keys, team_data.keys(), 'keys')
 
+    moved = team_data['robot_moved']
+    # Proton says this defaults to true.
+    # While we shouldn't need to worry about it not being there, just to be safe.
+    present = team_data.get('present', True)
+
+    if moved and not present:
+        raise Exception("Data for '{0}' indicates that the robot moved but was not present!".format(tla))
+
     zone_tokens = team_data['zone_tokens']
     check_missing(range(NUM_ZONES), zone_tokens.keys(), 'information for zones')
 

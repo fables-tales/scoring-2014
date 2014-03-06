@@ -62,7 +62,6 @@ input:
   TLA4:
     zone: 3
     disqualified: true
-    present: false
     robot_moved: true
     zone_tokens:
       0: 0

@@ -317,6 +317,13 @@ def assert_invalid(input_, expected_msg_part, error_message):
     assert expected_msg_part in e.message
     assert tla in e.message
 
+def test_validate_team_only_moved_if_present():
+    input_ = plain_input()
+    input_['present'] = False
+    input_['robot_moved'] = True
+    assert_invalid(input_, 'robot moved but was not present', \
+                    "Should error about the robot moving but not being present")
+
 def test_validate_team_missing_some_slots():
     input_ = plain_input()
 
