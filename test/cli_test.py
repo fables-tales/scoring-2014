@@ -25,7 +25,7 @@ def assert_run(relative_path):
 def test_run_the_template():
     result_dict = assert_run("templates/yaml_template.yaml")
 
-    assert result_dict["version"] == "1.0.0"
+    assert result_dict["version"] == "1.0.0-rc1"
     assert result_dict["match_number"] == 0
     assert result_dict["scores"] == {
         "TLA1": helpers.tla_result_fixture(0),
