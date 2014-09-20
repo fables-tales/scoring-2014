@@ -37,4 +37,4 @@ teams:
     # etc.
 ~~~~
 
-Run tests with `nosetests` from the root.
+Run tests with `nosetests test` from the root.
