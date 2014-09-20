@@ -2,8 +2,6 @@ match_number: 0
 teams:
   TLA1:
     zone: 0
-    disqualified: false
-    present: true
     robot_moved: false
     zone_tokens:
       0: 0
@@ -22,8 +20,6 @@ teams:
     upright_tokens: 0
   TLA2:
     zone: 1
-    disqualified: false
-    present: true
     robot_moved: false
     zone_tokens:
       0: 0
@@ -42,8 +38,6 @@ teams:
     upright_tokens: 0
   TLA3:
     zone: 2
-    disqualified: false
-    present: true
     robot_moved: false
     zone_tokens:
       0: 0
@@ -62,8 +56,6 @@ teams:
     upright_tokens: 0
   TLA4:
     zone: 3
-    disqualified: false
-    present: true
     robot_moved: false
     zone_tokens:
       0: 0
